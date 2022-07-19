@@ -1,0 +1,28 @@
+[2022-07-19 11:11:02,884] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: simple_dag.say_hi scheduled__2022-07-19T11:10:00+00:00 [queued]>
+[2022-07-19 11:11:02,904] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: simple_dag.say_hi scheduled__2022-07-19T11:10:00+00:00 [queued]>
+[2022-07-19 11:11:02,905] {taskinstance.py:1356} INFO - 
+--------------------------------------------------------------------------------
+[2022-07-19 11:11:02,906] {taskinstance.py:1357} INFO - Starting attempt 1 of 1
+[2022-07-19 11:11:02,907] {taskinstance.py:1358} INFO - 
+--------------------------------------------------------------------------------
+[2022-07-19 11:11:02,944] {taskinstance.py:1377} INFO - Executing <Task(BashOperator): say_hi> on 2022-07-19 11:10:00+00:00
+[2022-07-19 11:11:02,953] {standard_task_runner.py:52} INFO - Started process 10304 to run task
+[2022-07-19 11:11:02,961] {standard_task_runner.py:79} INFO - Running: ['***', 'tasks', 'run', 'simple_dag', 'say_hi', 'scheduled__2022-07-19T11:10:00+00:00', '--job-id', '530', '--raw', '--subdir', 'DAGS_FOLDER/first_dag.py', '--cfg-path', '/tmp/tmpq63whxu9', '--error-file', '/tmp/tmp_7ps6kvr']
+[2022-07-19 11:11:02,963] {standard_task_runner.py:80} INFO - Job 530: Subtask say_hi
+[2022-07-19 11:11:03,110] {task_command.py:370} INFO - Running <TaskInstance: simple_dag.say_hi scheduled__2022-07-19T11:10:00+00:00 [running]> on host 02ffb48252da
+[2022-07-19 11:11:03,259] {taskinstance.py:1571} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=simple_dag
+AIRFLOW_CTX_TASK_ID=say_hi
+AIRFLOW_CTX_EXECUTION_DATE=2022-07-19T11:10:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2022-07-19T11:10:00+00:00
+[2022-07-19 11:11:03,261] {subprocess.py:62} INFO - Tmp dir root location: 
+ /tmp
+[2022-07-19 11:11:03,262] {subprocess.py:74} INFO - Running command: ['bash', '-c', 'echo "Hi!!"']
+[2022-07-19 11:11:03,275] {subprocess.py:85} INFO - Output:
+[2022-07-19 11:11:03,277] {subprocess.py:92} INFO - Hi!!
+[2022-07-19 11:11:03,277] {subprocess.py:96} INFO - Command exited with return code 0
+[2022-07-19 11:11:03,321] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=simple_dag, task_id=say_hi, execution_date=20220719T111000, start_date=20220719T111102, end_date=20220719T111103
+[2022-07-19 11:11:03,374] {local_task_job.py:156} INFO - Task exited with return code 0
+[2022-07-19 11:11:03,445] {local_task_job.py:273} INFO - 1 downstream tasks scheduled from follow-on schedule check

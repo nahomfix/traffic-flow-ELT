@@ -1,0 +1,40 @@
+[2022-07-19 21:55:05,585] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: simple_dag.create_pg_table scheduled__2022-07-19T21:54:00+00:00 [queued]>
+[2022-07-19 21:55:05,599] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: simple_dag.create_pg_table scheduled__2022-07-19T21:54:00+00:00 [queued]>
+[2022-07-19 21:55:05,600] {taskinstance.py:1356} INFO - 
+--------------------------------------------------------------------------------
+[2022-07-19 21:55:05,600] {taskinstance.py:1357} INFO - Starting attempt 1 of 1
+[2022-07-19 21:55:05,601] {taskinstance.py:1358} INFO - 
+--------------------------------------------------------------------------------
+[2022-07-19 21:55:05,627] {taskinstance.py:1377} INFO - Executing <Task(PostgresOperator): create_pg_table> on 2022-07-19 21:54:00+00:00
+[2022-07-19 21:55:05,634] {standard_task_runner.py:52} INFO - Started process 499 to run task
+[2022-07-19 21:55:05,638] {standard_task_runner.py:79} INFO - Running: ['***', 'tasks', 'run', 'simple_dag', 'create_pg_table', 'scheduled__2022-07-19T21:54:00+00:00', '--job-id', '994', '--raw', '--subdir', 'DAGS_FOLDER/first_dag.py', '--cfg-path', '/tmp/tmptqyqigxv', '--error-file', '/tmp/tmpwu1p5a_q']
+[2022-07-19 21:55:05,639] {standard_task_runner.py:80} INFO - Job 994: Subtask create_pg_table
+[2022-07-19 21:55:05,730] {task_command.py:370} INFO - Running <TaskInstance: simple_dag.create_pg_table scheduled__2022-07-19T21:54:00+00:00 [running]> on host 29459987bc56
+[2022-07-19 21:55:05,917] {taskinstance.py:1571} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=simple_dag
+AIRFLOW_CTX_TASK_ID=create_pg_table
+AIRFLOW_CTX_EXECUTION_DATE=2022-07-19T21:54:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2022-07-19T21:54:00+00:00
+[2022-07-19 21:55:05,938] {base.py:68} INFO - Using connection ID 'postgres_localhost' for task execution.
+[2022-07-19 21:55:05,960] {dbapi.py:213} INFO - Running statement: 
+            create table if not exists traffic_flow (
+                track_id integer,
+                type integer,
+                traveled_d integer,
+                avg_speed integer, 
+                lat integer,
+                lon integer,
+                speed integer,
+                lon_acc integer,
+                lat_acc integer,
+                time integer,
+                primary key (track_id)
+            )
+        , parameters: None
+[2022-07-19 21:55:05,970] {postgres.py:94} INFO - NOTICE:  relation "traffic_flow" already exists, skipping
+
+[2022-07-19 21:55:06,002] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=simple_dag, task_id=create_pg_table, execution_date=20220719T215400, start_date=20220719T215505, end_date=20220719T215506
+[2022-07-19 21:55:06,052] {local_task_job.py:156} INFO - Task exited with return code 0
+[2022-07-19 21:55:06,133] {local_task_job.py:273} INFO - 1 downstream tasks scheduled from follow-on schedule check

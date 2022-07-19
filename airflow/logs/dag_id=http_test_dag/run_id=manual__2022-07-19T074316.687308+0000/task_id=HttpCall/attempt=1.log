@@ -1,0 +1,37 @@
+[2022-07-19 07:43:18,288] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: http_test_dag.HttpCall manual__2022-07-19T07:43:16.687308+00:00 [queued]>
+[2022-07-19 07:43:18,300] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: http_test_dag.HttpCall manual__2022-07-19T07:43:16.687308+00:00 [queued]>
+[2022-07-19 07:43:18,300] {taskinstance.py:1356} INFO - 
+--------------------------------------------------------------------------------
+[2022-07-19 07:43:18,301] {taskinstance.py:1357} INFO - Starting attempt 1 of 1
+[2022-07-19 07:43:18,302] {taskinstance.py:1358} INFO - 
+--------------------------------------------------------------------------------
+[2022-07-19 07:43:18,321] {taskinstance.py:1377} INFO - Executing <Task(SimpleHttpOperator): HttpCall> on 2022-07-19 07:43:16.687308+00:00
+[2022-07-19 07:43:18,326] {standard_task_runner.py:52} INFO - Started process 2975 to run task
+[2022-07-19 07:43:18,329] {standard_task_runner.py:79} INFO - Running: ['***', 'tasks', 'run', 'http_test_dag', 'HttpCall', 'manual__2022-07-19T07:43:16.687308+00:00', '--job-id', '29', '--raw', '--subdir', 'DAGS_FOLDER/first_dag.py', '--cfg-path', '/tmp/tmp9a52ghth', '--error-file', '/tmp/tmpqzlfdsjx']
+[2022-07-19 07:43:18,329] {standard_task_runner.py:80} INFO - Job 29: Subtask HttpCall
+[2022-07-19 07:43:18,391] {task_command.py:370} INFO - Running <TaskInstance: http_test_dag.HttpCall manual__2022-07-19T07:43:16.687308+00:00 [running]> on host 6fab1d40a0c4
+[2022-07-19 07:43:18,495] {taskinstance.py:1571} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=http_test_dag
+AIRFLOW_CTX_TASK_ID=HttpCall
+AIRFLOW_CTX_EXECUTION_DATE=2022-07-19T07:43:16.687308+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=manual__2022-07-19T07:43:16.687308+00:00
+[2022-07-19 07:43:18,497] {http.py:102} INFO - Calling HTTP method
+[2022-07-19 07:43:18,610] {taskinstance.py:1889} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/http/operators/http.py", line 104, in execute
+    response = http.run(self.endpoint, self.data, self.headers, self.extra_options)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/http/hooks/http.py", line 114, in run
+    session = self.get_conn(headers)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/http/hooks/http.py", line 68, in get_conn
+    conn = self.get_connection(self.http_conn_id)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/hooks/base.py", line 67, in get_connection
+    conn = Connection.get_connection_from_secrets(conn_id)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/connection.py", line 430, in get_connection_from_secrets
+    raise AirflowNotFoundException(f"The conn_id `{conn_id}` isn't defined")
+airflow.exceptions.AirflowNotFoundException: The conn_id `springboot-http` isn't defined
+[2022-07-19 07:43:18,617] {taskinstance.py:1400} INFO - Marking task as FAILED. dag_id=http_test_dag, task_id=HttpCall, execution_date=20220719T074316, start_date=20220719T074318, end_date=20220719T074318
+[2022-07-19 07:43:18,647] {standard_task_runner.py:97} ERROR - Failed to execute job 29 for task HttpCall (The conn_id `springboot-http` isn't defined; 2975)
+[2022-07-19 07:43:18,665] {local_task_job.py:156} INFO - Task exited with return code 1
+[2022-07-19 07:43:18,719] {local_task_job.py:273} INFO - 0 downstream tasks scheduled from follow-on schedule check

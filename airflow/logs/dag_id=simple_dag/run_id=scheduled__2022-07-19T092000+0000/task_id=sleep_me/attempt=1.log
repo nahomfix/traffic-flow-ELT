@@ -1,0 +1,27 @@
+[2022-07-19 09:21:01,751] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: simple_dag.sleep_me scheduled__2022-07-19T09:20:00+00:00 [queued]>
+[2022-07-19 09:21:01,761] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: simple_dag.sleep_me scheduled__2022-07-19T09:20:00+00:00 [queued]>
+[2022-07-19 09:21:01,761] {taskinstance.py:1356} INFO - 
+--------------------------------------------------------------------------------
+[2022-07-19 09:21:01,762] {taskinstance.py:1357} INFO - Starting attempt 1 of 1
+[2022-07-19 09:21:01,762] {taskinstance.py:1358} INFO - 
+--------------------------------------------------------------------------------
+[2022-07-19 09:21:01,779] {taskinstance.py:1377} INFO - Executing <Task(BashOperator): sleep_me> on 2022-07-19 09:20:00+00:00
+[2022-07-19 09:21:01,784] {standard_task_runner.py:52} INFO - Started process 4101 to run task
+[2022-07-19 09:21:01,788] {standard_task_runner.py:79} INFO - Running: ['***', 'tasks', 'run', 'simple_dag', 'sleep_me', 'scheduled__2022-07-19T09:20:00+00:00', '--job-id', '189', '--raw', '--subdir', 'DAGS_FOLDER/first_dag.py', '--cfg-path', '/tmp/tmpy4jyeews', '--error-file', '/tmp/tmph6iydvhy']
+[2022-07-19 09:21:01,789] {standard_task_runner.py:80} INFO - Job 189: Subtask sleep_me
+[2022-07-19 09:21:01,858] {task_command.py:370} INFO - Running <TaskInstance: simple_dag.sleep_me scheduled__2022-07-19T09:20:00+00:00 [running]> on host 02ffb48252da
+[2022-07-19 09:21:01,982] {taskinstance.py:1571} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=simple_dag
+AIRFLOW_CTX_TASK_ID=sleep_me
+AIRFLOW_CTX_EXECUTION_DATE=2022-07-19T09:20:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2022-07-19T09:20:00+00:00
+[2022-07-19 09:21:01,983] {subprocess.py:62} INFO - Tmp dir root location: 
+ /tmp
+[2022-07-19 09:21:01,985] {subprocess.py:74} INFO - Running command: ['bash', '-c', 'sleep 5']
+[2022-07-19 09:21:02,000] {subprocess.py:85} INFO - Output:
+[2022-07-19 09:21:07,006] {subprocess.py:96} INFO - Command exited with return code 0
+[2022-07-19 09:21:07,045] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=simple_dag, task_id=sleep_me, execution_date=20220719T092000, start_date=20220719T092101, end_date=20220719T092107
+[2022-07-19 09:21:07,077] {local_task_job.py:156} INFO - Task exited with return code 0
+[2022-07-19 09:21:07,183] {local_task_job.py:273} INFO - 1 downstream tasks scheduled from follow-on schedule check

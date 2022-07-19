@@ -1,0 +1,24 @@
+[2022-07-19 12:20:08,851] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: simple_dag.respond scheduled__2022-07-19T12:19:00+00:00 [queued]>
+[2022-07-19 12:20:08,864] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: simple_dag.respond scheduled__2022-07-19T12:19:00+00:00 [queued]>
+[2022-07-19 12:20:08,864] {taskinstance.py:1356} INFO - 
+--------------------------------------------------------------------------------
+[2022-07-19 12:20:08,865] {taskinstance.py:1357} INFO - Starting attempt 1 of 1
+[2022-07-19 12:20:08,867] {taskinstance.py:1358} INFO - 
+--------------------------------------------------------------------------------
+[2022-07-19 12:20:08,884] {taskinstance.py:1377} INFO - Executing <Task(PythonOperator): respond> on 2022-07-19 12:19:00+00:00
+[2022-07-19 12:20:08,888] {standard_task_runner.py:52} INFO - Started process 14099 to run task
+[2022-07-19 12:20:08,891] {standard_task_runner.py:79} INFO - Running: ['***', 'tasks', 'run', 'simple_dag', 'respond', 'scheduled__2022-07-19T12:19:00+00:00', '--job-id', '739', '--raw', '--subdir', 'DAGS_FOLDER/first_dag.py', '--cfg-path', '/tmp/tmplbx1kt2l', '--error-file', '/tmp/tmpw_af2sn4']
+[2022-07-19 12:20:08,892] {standard_task_runner.py:80} INFO - Job 739: Subtask respond
+[2022-07-19 12:20:08,947] {task_command.py:370} INFO - Running <TaskInstance: simple_dag.respond scheduled__2022-07-19T12:19:00+00:00 [running]> on host 02ffb48252da
+[2022-07-19 12:20:09,025] {taskinstance.py:1571} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=simple_dag
+AIRFLOW_CTX_TASK_ID=respond
+AIRFLOW_CTX_EXECUTION_DATE=2022-07-19T12:19:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2022-07-19T12:19:00+00:00
+[2022-07-19 12:20:14,585] {logging_mixin.py:115} INFO - (2724, 1)
+[2022-07-19 12:20:14,595] {python.py:173} INFO - Done. Returned value was: Greet Responded Again
+[2022-07-19 12:20:14,627] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=simple_dag, task_id=respond, execution_date=20220719T121900, start_date=20220719T122008, end_date=20220719T122014
+[2022-07-19 12:20:14,654] {local_task_job.py:156} INFO - Task exited with return code 0
+[2022-07-19 12:20:14,684] {local_task_job.py:273} INFO - 0 downstream tasks scheduled from follow-on schedule check
