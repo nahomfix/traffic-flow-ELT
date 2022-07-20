@@ -9,14 +9,26 @@ from airflow.providers.postgres.operators.postgres import PostgresOperator
 
 
 def read_data():
-    df = pd.read_csv("/opt/airflow/data/sample.csv", delimiter=";")
+    df = pd.read_csv(
+        "/opt/airflow/data/20181024_d1_0830_0900.csv",
+        skiprows=1,
+        header=None,
+        delimiter="\n",
+    )
     return df.shape
 
 
 def insert_data():
     pg_hook = PostgresHook(postgres_conn_id="postgres_localhost")
     conn = pg_hook.get_sqlalchemy_engine()
-    df = pd.read_csv("/opt/airflow/data/sample.csv", delimiter=";")
+    df = pd.read_csv(
+        "/opt/airflow/data/20181024_d1_0830_0900.csv",
+        skiprows=1,
+        header=None,
+        delimiter="\n",
+    )
+
+    df = df[0].str.split(";", expand=True)
 
     df.to_sql(
         "traffic_flow",
@@ -37,7 +49,7 @@ default_args = {
 with DAG(
     "simple_dag",
     default_args=default_args,
-    schedule_interval="*/1 * * * *",
+    schedule_interval="*/30 * * * *",
     catchup=False,
 ) as dag:
     read_data_op = PythonOperator(
