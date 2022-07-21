@@ -3,10 +3,10 @@ traffic_flow:
     outputs:
         dev:
             type: postgres
-            host: localhost
+            host: host.docker.internal
             user: airflow
             pass: airflow
             port: 5432
-            dbname: test
-            schema: traffic_flow_dbt
+            dbname: dev
+            schema: public
             threads: 4
