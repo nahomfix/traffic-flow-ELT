@@ -26,9 +26,14 @@ dag = DAG(
 with dag:
     start = DummyOperator(task_id="start")
 
-    dbt_op = BashOperator(
-        task_id="dbt",
+    dbt_run_op = BashOperator(
+        task_id="dbt_run",
         bash_command="dbt run --profiles-dir /opt/airflow/dbt --project-dir /opt/airflow/dbt",
     )
 
-    start >> dbt_op
+    dbt_docs_op = BashOperator(
+        task_id="dbt_docs",
+        bash_command="dbt docs generate --no-compile --profiles-dir /opt/airflow/dbt --project-dir /opt/airflow/dbt",
+    )
+
+    start >> dbt_run_op >> dbt_docs_op
