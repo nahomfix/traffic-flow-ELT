@@ -1,9 +1,7 @@
 import os
 from datetime import datetime
 
-import pandas as pd
 from airflow import DAG
-from airflow.operators.bash_operator import BashOperator
 from airflow.operators.dummy import DummyOperator
 from airflow.operators.python_operator import PythonOperator
 from airflow.providers.postgres.hooks.postgres import PostgresHook
@@ -17,6 +15,8 @@ def split_into_chunks(arr, n):
 
 
 def read_data():
+    import pandas as pd
+
     df = pd.read_csv(
         "/opt/airflow/data/20181024_d1_0830_0900.csv",
         skiprows=1,
@@ -58,6 +58,9 @@ def read_data():
 
 
 def insert_data():
+    import pandas as pd
+    from sqlalchemy.types import Integer, Numeric, String
+
     pg_hook = PostgresHook(postgres_conn_id=f"traffic_flow_{deployment}")
     conn = pg_hook.get_sqlalchemy_engine()
     df = pd.read_csv(
@@ -97,12 +100,62 @@ def insert_data():
         ],
     )
 
+    # new_df[
+    #     [
+    #         "track_id",
+    #         "traveled_d",
+    #         "avg_speed",
+    #         "lat",
+    #         "lon",
+    #         "speed",
+    #         "lon_acc",
+    #         "lat_acc",
+    #         "time",
+    #     ]
+    # ] = new_df[
+    #     [
+    #         "track_id",
+    #         "traveled_d",
+    #         "avg_speed",
+    #         "lat",
+    #         "lon",
+    #         "speed",
+    #         "lon_acc",
+    #         "lat_acc",
+    #         "time",
+    #     ]
+    # ].apply(
+    #     pd.to_numeric
+    # )
+
     new_df.to_sql(
         "traffic_flow",
         con=conn,
         if_exists="replace",
-        index=False,
+        index=True,
+        index_label="id",
+        dtype={
+            "track_id": Integer(),
+            "traveled_d": Numeric(),
+            "avg_speed": Numeric(),
+            "lat": Numeric(),
+            "lon": Numeric(),
+            "speed": Numeric(),
+            "lon_acc": Numeric(),
+            "lat_acc": Numeric(),
+            "time": Numeric(),
+        },
     )
+
+    # tuples = [tuple(x) for x in new_df.to_numpy()]
+
+    # pg_hook.insert_rows(
+    #     "traffic_flow",
+    #     tuples,
+    #     replace=False,
+    #     target_fields=new_df.columns.tolist(),
+    #     commit_every=0,
+    # )
 
 
 default_args = {
@@ -124,11 +177,6 @@ envs = ["dev", "stg", "prod"]
 with dag:
     start = DummyOperator(task_id="start")
 
-    # dbt_test_op = BashOperator(
-    #     task_id="dbt_test",
-    #     bash_command="dbt run --profiles-dir /opt/airflow/dbt --project-dir /opt/airflow/dbt",
-    # )
-
     # read_data_op = PythonOperator(
     #     task_id="read_data", python_callable=read_data
     # )
@@ -141,16 +189,15 @@ with dag:
                 id serial,
                 track_id integer,
                 type text,
-                traveled_d integer,
-                avg_speed integer,
-                lat integer,
-                lon integer,
-                speed integer,
-                lon_acc integer,
-                lat_acc integer,
-                time integer,
-                primary key (id)
-            );
+                traveled_d numeric,
+                avg_speed numeric,
+                lat numeric,
+                lon numeric,
+                speed numeric,
+                lon_acc numeric,
+                lat_acc numeric,
+                time numeric
+            )
         """,
     )
 

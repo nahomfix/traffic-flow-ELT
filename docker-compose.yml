@@ -57,11 +57,11 @@ x-airflow-common: &airflow-common
         _PIP_ADDITIONAL_REQUIREMENTS: ${_PIP_ADDITIONAL_REQUIREMENTS:-}
         DEPLOYMENT: "dev"
     volumes:
-        - ./dags:/opt/airflow/dags
-        - ./logs:/opt/airflow/logs
-        - ./plugins:/opt/airflow/plugins
-        - ../data:/opt/airflow/data
-        - ../dbt:/opt/airflow/dbt
+        - ./airflow/dags:/opt/airflow/dags
+        - ./airflow/logs:/opt/airflow/logs
+        - ./airflow/plugins:/opt/airflow/plugins
+        - ./data:/opt/airflow/data
+        - ./dbt:/opt/airflow/dbt
     user: "${AIRFLOW_UID:-50000}:0"
     depends_on: &airflow-common-depends-on
         postgres:
@@ -217,7 +217,7 @@ services:
             _PIP_ADDITIONAL_REQUIREMENTS: ""
         user: "0:0"
         volumes:
-            - .:/sources
+            - ./airflow:/sources
 
     airflow-cli:
         <<: *airflow-common
