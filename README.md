@@ -31,8 +31,6 @@ A data pipeline for Extracting, Loading and Transforming traffic flow data
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -86,17 +84,23 @@ Make sure you have docker installed on local machine.
     docker build . --tag extending_airflow:latest
     ```
 
-4. Run
+4. Run the following command once for first time initialization
+
+    ```sh
+     docker-compose up airflow-init
+    ```
+
+5. Run
     ```sh
      docker-compose up
     ```
-5. Open Airflow web browser
+6. Open Airflow web browser
     ```JS
     Navigate to `http://localhost:8000/` on the browser
     activate and trigger load_dag
     activate and trigger transform_dag
     ```
-6. Access redash dashboard
+7. Access redash dashboard
     ```JS
     Navigate to `http://localhost:5000/` on the browser
     ```
