@@ -1,5 +1,13 @@
 version: 2
 
+sources:
+    - name: traffic_flow_dev
+      database: dev
+      schema: public
+
+      tables:
+          - name: traffic_flow
+
 models:
     - name: taxis
       description: "A dbt model for Taxi types"
